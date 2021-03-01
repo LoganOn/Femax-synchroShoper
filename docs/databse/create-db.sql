@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `Tokens` (
 
     `ApiKeyId` Integer NOT NULL AUTO_INCREMENT,
     `ApiKey` VARCHAR (255),
-    PRIMARY KEY (`UserId`)
+    PRIMARY KEY (`ApiKeyId`)
     );
 
 CREATE TABLE IF NOT EXISTS `DeliveryOrders` (
@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS `DeliveryOrders` (
     `BaseRef` Varchar(64) NOT NULL,
     `UserId` VARCHAR(10) NOT NULL,
     `CreationDate` Timestamp NOT NULL,
-    PRIMARY KEY (`DeliveryOrderId`),
+    PRIMARY KEY (`DeliveryOrderId`)
     );
 #zweryfikowac czy są wszystkie niezbedne pola
-CREATE TABLE IF NOT EXISTS `Synchro` (
-    `SynchroId` Integer NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `Synchronization` (
+    `SynchronizationId` Integer NOT NULL AUTO_INCREMENT,
     `ProductId` Integer,
     `ProducerId` Integer,
     `GroupId` Integer,
@@ -42,16 +42,16 @@ CREATE TABLE IF NOT EXISTS `Synchro` (
     `Code` Varchar(255),
     `CreationDate` Timestamp NOT NULL,
     `ModifyDate` Timestamp NOT NULL,
-    PRIMARY KEY (`SynchroId`)
+    PRIMARY KEY (`SynchronizationId`)
     );
 
 CREATE TABLE IF NOT EXISTS `Emails` (
     `EmailId` Integer NOT NULL AUTO_INCREMENT,
     `Receiver` Varchar(255),
-    `DeliveryOrderId` Varchar(255),
+    `DeliveryOrderId` Integer,
     `CreationDate` Timestamp NOT NULL,
     PRIMARY KEY (`EmailId`),
     FOREIGN KEY (`DeliveryOrderId`)
-     REFERENCES DeliveryOrders(DeliveryOrderId),
+     REFERENCES DeliveryOrders(DeliveryOrderId)
     );
 
