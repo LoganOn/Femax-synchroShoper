@@ -18,6 +18,9 @@ public class Tokens {
     @Column(name = "ApiKeyId")
     private Long apiKeyId;
 
+    @Column(name = "ApiName")
+    private String apiName;
+
     @Column(name = "ApiKey")
     private String apiKey;
 }

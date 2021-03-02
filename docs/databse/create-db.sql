@@ -10,6 +10,7 @@ ALTER DATABASE server_db CHARACTER SET utf8 COLLATE utf8_general_ci;
 CREATE TABLE IF NOT EXISTS `Tokens` (
 
     `ApiKeyId` Integer NOT NULL AUTO_INCREMENT,
+    `ApiName` VARCHAR (255),
     `ApiKey` VARCHAR (255),
     PRIMARY KEY (`ApiKeyId`)
     );
