@@ -52,8 +52,8 @@ public class DeliveryOrdersController {
     private final HttpClient httpClient;
 
     @PostMapping
-    public ResponseEntity<?> addDetailsDeliveryOrders(@RequestParam(required = true) String apiKey, @RequestParam(required = true) String user, @RequestParam(required = true) String shoperOrderId,
-                                                      @RequestParam(required = true) String baseRef, @RequestParam(required = true) String status) throws IOException {
+    public ResponseEntity<?> addDetailsDeliveryOrders(@RequestParam String apiKey, @RequestParam String user, @RequestParam String shoperOrderId,
+                                                      @RequestParam String baseRef, @RequestParam String status) throws IOException {
         List<Integer> id = new ArrayList<Integer>();
         Optional<Tokens> sapToken = tokensRepository.findByApiName(TOKEN_SAP);
         Optional<Tokens> tokensOptional;
