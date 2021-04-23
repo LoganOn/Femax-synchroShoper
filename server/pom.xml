@@ -15,10 +15,14 @@
     <description>Synchronization SAP - Shoper</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>15</java.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -36,12 +40,17 @@
             <artifactId>guava</artifactId>
             <version>30.0-jre</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-devtools</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--            <optional>true</optional>-->
-<!--        </dependency>-->
+        <!-- Data base dependencies -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>7.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.22</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -57,39 +66,13 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- MySQL Connector -->
-        <dependency>
-       		<groupId>mysql</groupId>
-        	<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.16</version>
-		</dependency>
-        <!-- Swagger -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.5.2</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.4</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.simplejavamail/simple-java-mail -->
-        <dependency>
-            <groupId>org.simplejavamail</groupId>
-            <artifactId>simple-java-mail</artifactId>
-            <version>5.1.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-            <version>2.4.1</version>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
@@ -101,9 +84,7 @@
             <artifactId>commons-codec</artifactId>
             <version>1.11</version>
         </dependency>
-
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -116,6 +97,14 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>15</source>
+                    <target>15</target>
                 </configuration>
             </plugin>
         </plugins>

@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@Table(name="Tokens")
 public class Tokens {
 
     @Id

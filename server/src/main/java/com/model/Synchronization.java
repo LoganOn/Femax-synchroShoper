@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@Table(name="Synchronization")
 public class Synchronization {
 
     @Id

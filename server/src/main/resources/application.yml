@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: FEMAX_SERVER
+  datasource:
+    url: jdbc:mysql://mysql:3306/${spring.application.name}?serverTimezone=Europe/Warsaw&characterEncoding=UTF-8&useSSL=false&createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        naming:
+          physical-strategy: MySQLUpperCaseStrategy
+  flyway:
+    schemas: ${spring.application.name}
+    url: jdbc:mysql://mysql:3306/${spring.application.name}?serverTimezone=Europe/Warsaw&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    locations: classpath:/migration
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    validate-on-migrate: false
+logging:
+  file:
+    name: ${spring.application.name}.log
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local-docker
+  jpa:
+    show-sql: true
+  datasource:
+    username: root
+    password: root
+app:
+  server:
+    host: https://localhost:81
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    username: ${spring.application.name}
+    password: ${spring.application.name}
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:mysql://localhost:3308/${spring.application.name}?serverTimezone=Europe/Warsaw&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  flyway:
+    url: jdbc:mysql://localhost:3308/${spring.application.name}?serverTimezone=Europe/Warsaw&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+app:
+  server:
+    host: https://localhost:8080
