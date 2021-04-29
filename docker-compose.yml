@@ -1,0 +1,20 @@
+server:
+    build: ./server
+    volumes:
+      - ./server/:/server/
+    environment:
+      - SPRING_PROFILES_ACTIVE=local-docker
+      - TZ=Europe/Warsaw
+
+    links:
+      - mysql
+version: '3'
+services:
+  mysql:
+    image: mysql:8
+    restart: always
+    ports:
+      - 3308:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=FEMAX_SERVER
